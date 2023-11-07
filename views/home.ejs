@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="stylesheet">
+  <title>Inicio</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="Logo da Marca">
+      <h1>ENERGY</h1>
+    </div>
+    <div class="botoes">
+      <a href="/cadastro-cliente" class="botao-amarelo">Contratar Serviço</a>
+      <a href="/cadastro-eletrecista" class="botao-amarelo">Sou Eletricista</a>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<style>
+  /* começo tela inicio */
+  body {
+    background-color: #212121;
+    ;
+    /* Fundo preto */
+    color: #fff;
+    /* Texto branco */
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* 100% da altura da viewport */
+  }
+
+  .logo img {
+    width: 150px;
+    /* Ajuste o tamanho da imagem conforme necessário */
+  }
+
+  .logo h1 {
+    color: #DEB001;
+    /* Amarelo */
+    text-align: center;
+    font-family: Mina;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .botoes {
+    margin-top: 20px;
+
+    display: flex;
+    width: 290px;
+    height: 57px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .botao-amarelo {
+    background-color: #ffcc00;
+    /* Amarelo */
+    color: #000;
+    /* Texto preto */
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inter Black;
+    text-decoration: none;
+    font-weight: bold
+  }
+
+  .botao-amarelo:hover {
+    background-color: #ffdb4d;
+    /* Amarelo mais claro ao passar o mouse */
+  }
+
+  /* fim tela inicio */
+
+  /* começo tela cliente_entrar */
+
+  /* Estilos Gerais */
+  body {
+    background-color: #212121;
+    /* Fundo preto */
+    color: #fff;
+    /* Texto branco */
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* 100% da altura da viewport */
+  }
+
+  /* Estilos do Cabeçalho */
+  h1 {
+    color: #DEB001;
+    /* Amarelo */
+    font-family: Mina;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  /* Estilos dos Botões */
+  .opcoes {
+    display: flex;
+  }
+
+  button {
+    background-color: #ffcc00;
+    /* Amarelo */
+    color: #000;
+    /* Texto preto */
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inter Black;
+    text-decoration: none;
+    margin: 5px;
+  }
+
+  button:hover {
+    background-color: #ffdb4d;
+    /* Amarelo mais claro ao passar o mouse */
+  }
+
+  /* Estilos dos Formulários */
+  form {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  /* Estilos do Formulário de Entrar (inicialmente oculto) */
+  #formulario-entrar {
+    display: none;
+  }
+</style>

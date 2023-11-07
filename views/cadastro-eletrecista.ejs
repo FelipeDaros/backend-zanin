@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Eletricista</title>
+  <!-- Importe o Bootstrap (você pode usar um link CDN ou baixar o arquivo CSS localmente) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Centralize o formulário verticalmente na tela */
+    .center-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container center-form">
+    <div class="logo">
+      <img src="logo.png" alt="Logo da Marca">
+      <h1>ENERGY</h1>
+    </div>
+    <form id="meuFormulario" method="POST">
+      <h2>Cadastrar Eletricista</h2>
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" placeholder="Informe seu nome">
+      </div>
+      <div class="form-group">
+        <label for="data-nascimento">Data Nascimento:</label>
+        <input type="date" class="form-control" id="data-nascimento" placeholder="Informe sua data de nascimento">
+      </div>
+      <div class="form-group">
+        <label for="cidade">Cidade:</label>
+        <input type="text" class="form-control" id="cidade" placeholder="Informe sua cidade">
+      </div>
+      <div class="form-group">
+        <label for="contato">Contato:</label>
+        <input type="text" class="form-control" id="contato" placeholder="Informe seu contato">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" class="form-control" id="email" placeholder="Informe seu e-mail">
+      </div>
+      <div class="form-group">
+        <label for="custo-hora">Custo médio por hora:</label>
+        <input type="number" class="form-control" id="custo-hora" placeholder="Informe o custo por hora">
+      </div>
+      <label for="especialidade">Especialidade:</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="especialidade" id="residencial" value="Residencial">
+        <label class="form-check-label" for="residencial">Residencial</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="especialidade" id="industrial" value="Industrial">
+        <label class="form-check-label" for="industrial">Industrial</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="especialidade" id="predial" value="Predial">
+        <label class="form-check-label" for="predial">Predial</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="especialidade" id="eletronica" value="Eletrônica">
+        <label class="form-check-label" for="eletronica">Eletrônica</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="especialidade" id="seguranca" value="Segurança">
+        <label class="form-check-label" for="seguranca">Segurança</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="especialidade" id="arcondicionado" value="Ar Condicionado">
+        <label class="form-check-label" for="arcondicionado">Ar Condicionado</label>
+      </div>
+      <button type="submit" class="btn btn-warning mt-3">Enviar</button>
+    </form>
+    <div class="divHandleButtonback">
+      <a href="/home"><img src="seta_voltar.png" alt="Voltar" class="seta-voltar"></a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("meuFormulario").addEventListener("submit", function (event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+      // Coletar os dados do formulário
+
+      const especialidadesSelecionadas = [];
+
+      document.querySelectorAll('input[name="especialidade"]:checked').forEach((checkbox) => {
+        especialidadesSelecionadas.push(checkbox.value);
+      });
+
+      const formData = new FormData();
+      formData.append('nome', document.getElementById("nome").value);
+      formData.append('email', document.getElementById("email").value);
+      formData.append('data_nascimento', document.getElementById("data-nascimento").value);
+      formData.append('cidade', document.getElementById("cidade").value);
+      formData.append('custo_medio', document.getElementById("custo-hora").value);
+      formData.append('especialidades', especialidadesSelecionadas.join(','));
+
+      // Definir o cabeçalho "Content-Type" para "application/json"
+      const headers = new Headers({
+        'Content-Type': 'application/json'
+      });
+
+      // Realizar a solicitação de envio com fetch
+      fetch("http://localhost:3333/cadastrar-eletrecista", {
+        method: "POST",
+        headers: headers, // Definir os cabeçalhos
+        body: JSON.stringify(Object.fromEntries(formData)) // Converter FormData em JSON
+      })
+        .then((response) => {
+          if (response.ok) {
+            // A solicitação foi bem-sucedida
+            alert("Site ainda em desenvolvimento...");
+            window.location.reload();
+          } else {
+            // A solicitação falhou
+            alert("Erro ao enviar o formulário.");
+          }
+        })
+        .catch((error) => {
+          console.error("Erro na solicitação fetch:", error);
+        });
+    });
+  </script>
+
+  <!-- Importe o JavaScript do Bootstrap (você pode usar um link CDN ou baixar o arquivo JS localmente) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+
+<style>
+  /* Estilos Gerais */
+
+  body {
+    background-color: #212121;
+    /* Fundo preto */
+    color: #fff;
+    /* Texto branco */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* Estilos do Contêiner */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-top: 15px;
+
+  }
+
+  /* Estilos do Título */
+  h1 {
+    color: #DEB001;
+    text-align: center;
+    font-family: Mina;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  /* Estilos dos Formulários */
+  form {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  /* Estilos do Logotipo */
+  .logo img {
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+    margin-top: 100px;
+  }
+
+  /* Estilo da palavra "eletricista" */
+  .cliente-title {
+    color: #FFF;
+    text-align: center;
+    font-family: Mina;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .botoes {
+    margin-top: 40px;
+
+    display: flex;
+    width: 290px;
+    height: 40px;
+    flex-direction: row;
+    /* Itens são dispostos na mesma linha */
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .botao-amarelo {
+    background-color: #ffcc00;
+    color: #000;
+    padding: 10px 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inter Black;
+    text-decoration: none;
+    margin-right: 10px;
+    /* Adicione margem direita para criar espaço entre os botões */
+    font-weight: bold
+  }
+
+  .botao-amarelo:hover {
+    background-color: #ffdb4d;
+  }
+
+  .divHandleButtonback {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+  
+</style>

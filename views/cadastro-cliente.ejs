@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>Cadastro Cliente</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="barra-superior">
+      <div class="container">
+        <div class="logo">
+          <img src="logo.png" alt="Logo da Marca">
+          <h1>ENERGY</h1>
+        </div>
+        <div class="cliente">
+          <h2 class="cliente-title">Cliente</h2>
+        </div>
+        <div class="container">
+          <form id="meuFormulario" method="POST">
+            <label for=" cpf">CPF:</label>
+            <input type="text" id="cpf" placeholder="Digite seu CPF" required>
+
+            <label for="nome-cadastro">Nome:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Digite seu email" required>
+
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" placeholder="Digite sua cidade" required>
+
+            <label for="senha-cadastro">Senha:</label>
+            <input type="password" id="senha" placeholder="Digite sua senha" required>
+
+            <label for="confirmar-senha">Confirmar Senha:</label>
+            <input type="password" id="confirmar-senha" placeholder="Confirme sua senha" required>
+
+            <button type="submit" class="btn btn-warning mt-3">Cadastrar</button>
+          </form>
+        </div>
+        <div class="divHandleButtonback">
+          <a href="/home"><img src="seta_voltar.png" alt="Voltar" class="seta-voltar"></a>
+        </div>
+      </div>
+</body>
+<script>
+  document.getElementById("meuFormulario").addEventListener("submit", function (event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+    // Coletar os dados do formulário
+
+    const senha = document.getElementById("senha").value;
+    const confirmaSenha = document.getElementById("confirmar-senha").value;
+
+    if(senha !== confirmaSenha){
+      return alert('Senhas não conferem!');
+    }
+
+    const formData = new FormData();
+    formData.append('nome', document.getElementById("nome").value);
+    formData.append('email', document.getElementById("email").value);
+    formData.append('cpf', document.getElementById("cpf").value);
+    formData.append('cidade', document.getElementById("cidade").value);
+    formData.append('senha', document.getElementById("senha").value);
+
+    // Definir o cabeçalho "Content-Type" para "application/json"
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    // Realizar a solicitação de envio com fetch
+    fetch("http://localhost:3333/cadastrar-cliente", {
+      method: "POST",
+      headers: headers, // Definir os cabeçalhos
+      body: JSON.stringify(Object.fromEntries(formData)) // Converter FormData em JSON
+    })
+      .then((response) => {
+        if (response.ok) {
+          // A solicitação foi bem-sucedida
+          alert("Site ainda em desenvolvimento...");
+          window.location.reload();
+        } else {
+          // A solicitação falhou
+          alert("Erro ao enviar o formulário.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro na solicitação fetch:", error);
+      });
+  });
+</script>
+
+<!-- Importe o JavaScript do Bootstrap (você pode usar um link CDN ou baixar o arquivo JS localmente) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>
+<style>
+  /* Estilos Gerais */
+
+  body {
+    background-color: #212121;
+    /* Fundo preto */
+    color: #fff;
+    /* Texto branco */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* Estilos do Contêiner */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+  }
+
+  /* Estilos do Título */
+  h1 {
+    color: #DEB001;
+    text-align: center;
+    font-family: Mina;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  /* Estilos dos Formulários */
+  form {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  /* Estilos do Logotipo */
+  .logo img {
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+    margin-top: 100px;
+  }
+
+  /* Estilo da palavra "Cliente" */
+  .cliente-title {
+    color: #FFF;
+    text-align: center;
+    font-family: Mina;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .botoes {
+    margin-top: 40px;
+
+    display: flex;
+    width: 290px;
+    height: 40px;
+    flex-direction: row;
+    /* Itens são dispostos na mesma linha */
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .botao-amarelo {
+    background-color: #ffcc00;
+    color: #000;
+    padding: 10px 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inter Black;
+    text-decoration: none;
+    margin-right: 10px;
+    /* Adicione margem direita para criar espaço entre os botões */
+    font-weight: bold
+  }
+
+  .botao-amarelo:hover {
+    background-color: #ffdb4d;
+  }
+
+  .divHandleButtonback {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+</style>
