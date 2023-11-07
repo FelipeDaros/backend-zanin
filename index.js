@@ -3,6 +3,8 @@
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
+const cors = require('cors'); // Importe o middleware cors
+
 
 app.use(express.json());
 
