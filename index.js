@@ -56,6 +56,10 @@ const Eletrecista = sequelize.define('eletrecista', {
   especialidades: {
     type: DataTypes.STRING,
     allowNull: true,
+  },
+  tipo: {
+    type: DataTypes.STRING,
+    allowNull: false,
   }
 });
 
@@ -86,6 +90,10 @@ const Cliente = sequelize.define('cliente', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  tipo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 });
 
 // Sincronize o modelo com o banco de dados
@@ -114,6 +122,7 @@ app.post('/cadastrar-eletrecista', async (req, res) => {
       cidade: req.body.cidade,
       custo_medio: req.body.custo_medio,
       especialidades: req.body.especialidades,
+      tipo: 'ELETRECISTA'
     });
 
     res.status(201).json(eletrecista);
@@ -142,6 +151,7 @@ app.post('/cadastrar-cliente', async (req, res) => {
       cidade: req.body.cidade,
       email: req.body.email,
       senha: req.body.senha,
+      tipo: 'CLIENTE'
     });
 
     res.status(201).json(cliente);
