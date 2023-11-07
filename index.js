@@ -8,6 +8,8 @@ app.use(express.json());
 
 app.use(cors())
 
+const port = 3333;
+
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './database.sqlite'
@@ -70,7 +72,7 @@ app.get('/listar', async (req, res) => {
   }
 });
 
-app.listen(3333, () => {
+app.listen(port, () => {
   console.log("Servidor rodando na porta 3333");
 });
 
