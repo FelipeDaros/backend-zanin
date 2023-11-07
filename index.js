@@ -6,6 +6,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors())
+
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './database.sqlite'
