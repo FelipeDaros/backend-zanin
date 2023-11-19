@@ -17,8 +17,11 @@ export class Cliente{
   @Column({type: 'varchar'})
   email: string;
 
-  @Column({type: 'varchar'})
-  senha: string;
+  @Column({type: 'varchar', nullable: true})
+  bairro: string;
+
+  @Column({type: 'varchar', nullable: true})
+  telefone: string;
 
   @Column({ type: 'varchar'})
   tipo: string;
