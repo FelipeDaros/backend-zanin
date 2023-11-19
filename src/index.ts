@@ -56,8 +56,9 @@ AppDataSource.initialize().then(() => {
         cpf: req.body.cpf,
         cidade: req.body.cidade,
         email: req.body.email,
-        senha: req.body.senha,
-        tipo: 'CLIENTE'
+        tipo: 'CLIENTE',
+        bairro: req.body.bairro,
+        telefone: req.body.telefone
       });
 
       await AppDataSource.getRepository(Cliente).save(cliente);
